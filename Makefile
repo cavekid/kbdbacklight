@@ -1,5 +1,6 @@
 CC = gcc
-CFLAGS ?= -O2 -fPIC -pedantic -Wall -lm
+CFLAGS ?= -O2 -fPIC -pedantic -Wall
+LDFLAGS = -lm
 
 OBJ = main.o kbdbacklight.o
 TARGET = kbdbacklight
@@ -11,7 +12,7 @@ PREFIX = /usr
 all: $(TARGET)
 
 $(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 main.o: main.c kbdbacklight.h
 	$(CC) $(CFLAGS) -c $^
