@@ -9,7 +9,7 @@ int
 main(int argc, char *argv[])
 {
 	char *command;
-	int value;
+	int value, result;
 
 	if (argc < 2) {
 		goto usage;
@@ -33,28 +33,23 @@ main(int argc, char *argv[])
 	}
 
 	if (strncmp(command, "-set", 4) == 0) {
-		if(set_brightness(value)) {
-			goto fail;
-		}
-		return 0;
+		result = set_brightness(value);
+	} else if (strncmp(command, "-inc", 4) == 0) {
+		result = inc_brightness(value);
+	} else if (strncmp(command, "-dec", 4) == 0) {
+		result = dec_brightness(value);
+	} else {
+		goto usage;
 	}
 
-	if (strncmp(command, "-inc", 4) == 0) {
-		if(inc_brightness(value)) {
-			goto fail;
-		}
-		return 0;
+	if (result != 0) {
+		goto error;
 	}
 
-	if (strncmp(command, "-dec", 4) == 0) {
-		if(dec_brightness(value)) {
-			goto fail;
-		}
-		return 0;
-	}
+	return 0;
 
-fail:
-	perror("failed to set brightness");
+error:
+	fprintf(stderr, "Error: failed to adjust brightness (%s)\n", strerror(errno));
 	return 2;
 
 usage:
@@ -72,5 +67,4 @@ usage:
 	fprintf(stderr, "Note:\n");
 	fprintf(stderr, "  PERCENT must be a value between %d and %d.\n", MIN_PERCENTAGE, MAX_PERCENTAGE);
 	return 1;
-
 }
