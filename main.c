@@ -28,7 +28,7 @@ main(int argc, char *argv[])
 
 	value = strtol(argv[2], NULL, 10);
 
-	if (value < 0 || value > 100) {
+	if (value < MIN_PERCENTAGE || value > MAX_PERCENTAGE) {
 		goto usage;
 	}
 
@@ -58,7 +58,19 @@ fail:
 	return 2;
 
 usage:
-	fprintf(stderr, "Usage: kbdbacklight [-get|-set|-inc|-dec] [percent]\n");
+	fprintf(stderr, "Usage: kbdbacklight [-get | -set PERCENT | -inc PERCENT | -dec PERCENT]\n\n");
+	fprintf(stderr, "Options:\n");
+	fprintf(stderr, "  -get             Get the current keyboard backlight brightness in percent (%d-%d).\n", MIN_PERCENTAGE, MAX_PERCENTAGE);
+	fprintf(stderr, "  -set PERCENT     Set the keyboard backlight brightness to the specified PERCENT (%d-%d).\n", MIN_PERCENTAGE, MAX_PERCENTAGE);
+	fprintf(stderr, "  -inc PERCENT     Increase the current brightness by the specified PERCENT.\n");
+	fprintf(stderr, "  -dec PERCENT     Decrease the current brightness by the specified PERCENT.\n\n");
+	fprintf(stderr, "Examples:\n");
+	fprintf(stderr, "  kbdbacklight -get              # Prints the current brightness.\n");
+	fprintf(stderr, "  kbdbacklight -set 75           # Sets the brightness to 75%%.\n");
+	fprintf(stderr, "  kbdbacklight -inc 10           # Increases brightness by 10%%.\n");
+	fprintf(stderr, "  kbdbacklight -dec 20           # Decreases brightness by 20%%.\n\n");
+	fprintf(stderr, "Note:\n");
+	fprintf(stderr, "  PERCENT must be a value between %d and %d.\n", MIN_PERCENTAGE, MAX_PERCENTAGE);
 	return 1;
 
 }
