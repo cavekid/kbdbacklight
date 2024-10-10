@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 #include "kbdbacklight.h"
 
@@ -58,12 +59,7 @@ brightness()
 int
 set_brightness(int value)
 {
-	if (value < MIN_PERCENTAGE) {
-		value = MIN_PERCENTAGE;
-	} else if (value > MAX_PERCENTAGE) {
-		value = MAX_PERCENTAGE;
-	}
-
+	value = fmin(fmax(value, MIN_PERCENTAGE), MAX_PERCENTAGE);
 	int absolute_brightness = (max_brightness() * value) / 100;
 
 	return write_sysfs_int(BRIGHTNESS, absolute_brightness);
@@ -73,6 +69,7 @@ int
 inc_brightness(int value)
 {
 	int current_percentage = (brightness() * 100) / max_brightness();
+
 	return set_brightness(current_percentage + value);
 }
 
@@ -80,6 +77,7 @@ int
 dec_brightness(int value)
 {
 	int current_percentage = (brightness() * 100) / max_brightness();
+
 	return set_brightness(current_percentage - value);
 }
 

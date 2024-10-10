@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS ?= -O2 -fPIC -pedantic -Wall
+CFLAGS ?= -O2 -fPIC -pedantic -Wall -lm
 
 OBJ = main.o kbdbacklight.o
 TARGET = kbdbacklight
