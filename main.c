@@ -18,7 +18,7 @@ main(int argc, char *argv[])
 	command = argv[1];
 
 	if (strncmp(command, "-get", 4) == 0) {
-		printf("%d\n", brightness());
+		printf("%d\n", get_brightness());
 		return 0;
 	}
 

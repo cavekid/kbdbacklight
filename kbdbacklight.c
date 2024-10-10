@@ -57,6 +57,12 @@ brightness()
 }
 
 int
+get_brightness()
+{
+	return (brightness() * 100) / max_brightness();
+}
+
+int
 set_brightness(int value)
 {
 	value = fmin(fmax(value, MIN_PERCENTAGE), MAX_PERCENTAGE);

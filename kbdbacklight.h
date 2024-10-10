@@ -8,9 +8,7 @@
 #define MIN_PERCENTAGE	0
 #define MAX_PERCENTAGE	100
 
-int max_brightness();
-
-int brightness();
+int get_brightness();
 
 int set_brightness(int value);
 
