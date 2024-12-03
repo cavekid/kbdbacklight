@@ -1,12 +1,20 @@
 #ifndef YBACKLIGHT_H
 #define YBACKLIGHT_H
 
-#define DRIVER			"smc::kbd_backlight"
-#define DRIVER_PATH		"/sys/class/leds/" DRIVER
-#define BRIGHTNESS		DRIVER_PATH "/brightness"
-#define MAX_BRIGHTNESS	DRIVER_PATH	"/max_brightness"
+/* Name of the sysfs backlight device class. */
+#define CLASS			"backlight"
+
+/* Name of the sysfs backlight device driver. */
+#define DRIVER			"intel_backlight"
+
+/* Minimum brightness allowed to set. */
 #define MIN_PERCENTAGE	0
+
+/* Maximum brightness allowed to set. */
 #define MAX_PERCENTAGE	100
+
+#define BRIGHTNESS		"/sys/class/" CLASS "/" DRIVER "/brightness"
+#define MAX_BRIGHTNESS	"/sys/class/" CLASS "/" DRIVER "/max_brightness"
 
 int get_brightness();
 
