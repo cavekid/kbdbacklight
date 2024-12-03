@@ -22,10 +22,10 @@ ybacklight.o: ybacklight.c ybacklight.h
 
 install:
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp ybacklight $(DESTDIR)$(PREFIX)/bin/ybacklight
+	cp $(TARGET) $(DESTDIR)$(PREFIX)/bin/$(TARGET)
 
 uninstall:
-	rm $(DESTDIR)$(PREFIX)/bin/ybacklight
+	rm $(DESTDIR)$(PREFIX)/bin/$(TARGET)
 
 clean:
 	rm -f $(OBJ) $(TARGET) *.gch
