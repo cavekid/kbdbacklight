@@ -13,6 +13,13 @@ make
 make install
 ```
 
+Depending on the sysfs driver *ybacklight* is compiled with, you may want to override `TARGET` to differentiate the binaries.
+
+```
+make TARGET=ybacklight-kbd
+make install
+```
+
 As writing to sysfs requires elevated privileges, the binary has to be run as `root`. Therefore, you'll most probably want to set the `SUID` bit afterwards to make `ybacklight` accessible to  normal users.
 
 ```
