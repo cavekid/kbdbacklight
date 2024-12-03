@@ -3,7 +3,7 @@
 #include <string.h>
 #include <errno.h>
 
-#include "kbdbacklight.h"
+#include "ybacklight.h"
 
 int
 main(int argc, char *argv[])
@@ -53,17 +53,17 @@ error:
 	return 2;
 
 usage:
-	fprintf(stderr, "Usage: kbdbacklight [-get | -set PERCENT | -inc PERCENT | -dec PERCENT]\n\n");
+	fprintf(stderr, "Usage: ybacklight [-get | -set PERCENT | -inc PERCENT | -dec PERCENT]\n\n");
 	fprintf(stderr, "Options:\n");
-	fprintf(stderr, "  -get             Get the current keyboard backlight brightness in percent (%d-%d).\n", MIN_PERCENTAGE, MAX_PERCENTAGE);
-	fprintf(stderr, "  -set PERCENT     Set the keyboard backlight brightness to the specified PERCENT (%d-%d).\n", MIN_PERCENTAGE, MAX_PERCENTAGE);
+	fprintf(stderr, "  -get             Get the current backlight brightness in percent (%d-%d).\n", MIN_PERCENTAGE, MAX_PERCENTAGE);
+	fprintf(stderr, "  -set PERCENT     Set the backlight brightness to the specified PERCENT (%d-%d).\n", MIN_PERCENTAGE, MAX_PERCENTAGE);
 	fprintf(stderr, "  -inc PERCENT     Increase the current brightness by the specified PERCENT.\n");
 	fprintf(stderr, "  -dec PERCENT     Decrease the current brightness by the specified PERCENT.\n\n");
 	fprintf(stderr, "Examples:\n");
-	fprintf(stderr, "  kbdbacklight -get              # Prints the current brightness.\n");
-	fprintf(stderr, "  kbdbacklight -set 75           # Sets the brightness to 75%%.\n");
-	fprintf(stderr, "  kbdbacklight -inc 10           # Increases brightness by 10%%.\n");
-	fprintf(stderr, "  kbdbacklight -dec 20           # Decreases brightness by 20%%.\n\n");
+	fprintf(stderr, "  ybacklight -get              # Prints the current brightness.\n");
+	fprintf(stderr, "  ybacklight -set 75           # Sets the brightness to 75%%.\n");
+	fprintf(stderr, "  ybacklight -inc 10           # Increases brightness by 10%%.\n");
+	fprintf(stderr, "  ybacklight -dec 20           # Decreases brightness by 20%%.\n\n");
 	fprintf(stderr, "Note:\n");
 	fprintf(stderr, "  PERCENT must be a value between %d and %d.\n", MIN_PERCENTAGE, MAX_PERCENTAGE);
 	return 1;

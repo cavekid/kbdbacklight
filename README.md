@@ -1,10 +1,10 @@
-# kbdbacklight
+# ybacklight
 
-Adjust keyboard backlight brightness using sysfs.
+Adjust backlight brightness using sysfs.
 
 ## Build
 
-Prior compilation, the sysfs driver path can be configured according to your hardware in `kbdbacklight.h`.
+Prior compilation, the sysfs driver path can be configured according to your hardware in `ybacklight.h`.
 
 Then, build the binary.
 
@@ -13,16 +13,16 @@ make
 make install
 ```
 
-As writing to sysfs requires elevated privileges, the binary has to be run as `root`. Therefore, you'll most probably want to set the `SUID` bit afterwards to make `kbdbacklight` accessible to  normal users.
+As writing to sysfs requires elevated privileges, the binary has to be run as `root`. Therefore, you'll most probably want to set the `SUID` bit afterwards to make `ybacklight` accessible to  normal users.
 
 ```
-chown root:root /usr/bin/kbdbacklight
-chmod 4755 /usr/bin/kbdbacklight
+chown root:root /usr/bin/ybacklight
+chmod 4755 /usr/bin/ybacklight
 ```
 
 ## Usage
 
-`kbdbacklight [-get|-set|-inc|-dec] [value]`
+`ybacklight [-get|-set|-inc|-dec] [value]`
 
 - `-get`: Get current brightness.
 - `-set [value]`: Set brightness to `value` (percentage).

@@ -1,5 +1,5 @@
-#ifndef KBDBACKLIGHT_H
-#define KBDBACKLIGHT_H
+#ifndef YBACKLIGHT_H
+#define YBACKLIGHT_H
 
 #define DRIVER			"smc::kbd_backlight"
 #define DRIVER_PATH		"/sys/class/leds/" DRIVER

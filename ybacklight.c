@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "kbdbacklight.h"
+#include "ybacklight.h"
 
 int
 read_sysfs_int(const char* path)
