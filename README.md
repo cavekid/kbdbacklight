@@ -4,7 +4,15 @@ Adjust backlight brightness using sysfs.
 
 ## Build
 
-Prior compilation, the sysfs driver path can be configured according to your hardware in `ybacklight.h`.
+Prior compilation, configure the desired sysfs backlight driver to control in `ybacklight.h`.
+Optionally, adjust the desired minimum and maximum brightness levels (defaults to 0-100).
+
+Example: Apple SMC keyboard backlight.
+
+```sh
+sed -i 's/\(#define CLASS\s*"\)[^"]*"/\1leds"/' ybacklight.h
+sed -i 's/\(#define DRIVER\s*"\)[^"]*"/\1smc::kbd_backlight"/' ybacklight.h
+```
 
 Then, build the binary.
 
@@ -13,16 +21,16 @@ make
 make install
 ```
 
-Depending on the sysfs driver *ybacklight* is compiled with, you may want to override `TARGET` to differentiate the binaries.
+Depending on the specific sysfs driver _ybacklight_ is compiled with, you may want to override `TARGET` to differentiate the binaries later.
 
-```
-make TARGET=ybacklight-kbd
+```sh
+make TARGET=ybacklight-kbd_backlight
 make install
 ```
 
-As writing to sysfs requires elevated privileges, the binary has to be run as `root`. Therefore, you'll most probably want to set the `SUID` bit afterwards to make `ybacklight` accessible to  normal users.
+As writing to sysfs requires elevated privileges, the binary has to be run as `root`. Therefore, you'll most probably want to set the `SUID` bit afterwards to make _ybacklight_ accessible to normal users.
 
-```
+```sh
 chown root:root /usr/bin/ybacklight
 chmod 4755 /usr/bin/ybacklight
 ```
