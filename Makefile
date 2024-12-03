@@ -2,10 +2,10 @@ CC = gcc
 CFLAGS ?= -O2 -fPIC -pedantic -Wall
 LDFLAGS = -lm
 
-OBJ = main.o kbdbacklight.o
-TARGET = kbdbacklight
+OBJ = main.o ybacklight.o
 
-PREFIX = /usr
+PREFIX ?= /usr
+TARGET ?= ybacklight
 
 .PHONY: clean all install uninstall
 
@@ -14,18 +14,18 @@ all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
-main.o: main.c kbdbacklight.h
+main.o: main.c ybacklight.h
 	$(CC) $(CFLAGS) -c $^
 
-kbdbacklight.o: kbdbacklight.c kbdbacklight.h
+ybacklight.o: ybacklight.c ybacklight.h
 	$(CC) $(CFLAGS) -c $^
 
 install:
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp kbdbacklight $(DESTDIR)$(PREFIX)/bin/kbdbacklight
+	cp ybacklight $(DESTDIR)$(PREFIX)/bin/ybacklight
 
 uninstall:
-	rm $(DESTDIR)$(PREFIX)/bin/kbdbacklight
+	rm $(DESTDIR)$(PREFIX)/bin/ybacklight
 
 clean:
 	rm -f $(OBJ) $(TARGET) *.gch
